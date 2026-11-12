@@ -2,12 +2,14 @@ const showSelect = document.getElementById("show-select");
 const showDetails = document.getElementById("show-details");
 const message = document.getElementById("message");
 
-function showMessage(text) {
+function showMessage(text, type = "loading") {
   message.textContent = text;
+  message.className = type;
 }
 
 function clearMessage() {
   message.textContent = "";
+  message.className = "";
 }
 
 async function loadShows() {
@@ -33,7 +35,7 @@ async function loadShows() {
     fillDropdown(topShows);
   } catch (error) {
     console.error(error);
-    showMessage(error.message);
+    showMessage(error.message, "error");
   }
 }
 
@@ -76,7 +78,7 @@ async function loadShowDetails(id) {
     displayDetails(show);
   } catch (error) {
     console.error(error);
-    showMessage(error.message);
+    showMessage(error.message, "error");
   }
 }
 
